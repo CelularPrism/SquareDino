@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Movement movement;
+    [SerializeField] private Animator animator;
+
+    private void Start()
     {
-        
+        movement = transform.GetComponent<Movement>();
+        animator = transform.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        animator.SetBool("Move", movement.isMove);
     }
 }

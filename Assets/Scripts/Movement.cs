@@ -5,6 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public bool isMove = false;
+    public float speedRotation = 5f;
 
     private WayPoint wayPoint;
 
@@ -16,6 +17,7 @@ public class Movement : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, wayPoint.position, wayPoint.speed * Time.deltaTime);
                 transform.LookAt(wayPoint.transform);
+                
                 isMove = true;
             } else
             {
