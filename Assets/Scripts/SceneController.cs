@@ -28,15 +28,12 @@ public class SceneController : MonoBehaviour
         if (!movement.isMove && healthSystem.isLive)
         {
             floorManager = GetFloor();
-            if (floorManager == null)
+            if (floorManager == null && indexPoint < wayPoints.Length)
             {
                 shooting.shooting = false;
-                if (indexPoint < wayPoints.Length)
-                {
-                    uiManager.UpdateSlider();
-                    movement.SetPoint(wayPoints[indexPoint]);
-                    indexPoint++;
-                }
+                uiManager.UpdateSlider();
+                movement.SetPoint(wayPoints[indexPoint]);
+                indexPoint++;
             } else if (indexPoint < wayPoints.Length)
             {
                 shooting.shooting = true;
@@ -58,6 +55,7 @@ public class SceneController : MonoBehaviour
         {
             Collider[] colliders = Physics.OverlapSphere(positionSphere, 0.1f, floorMask);
             floorManager = colliders[0].GetComponent<FloorManager>();
+            floorManager.ActivateEnemies();
         }
 
         return floorManager;

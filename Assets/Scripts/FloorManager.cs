@@ -21,6 +21,15 @@ public class FloorManager : MonoBehaviour
         }
     }
 
+    public void ActivateEnemies()
+    {
+        foreach (Transform enemyTrans in enemies)
+        {
+            Enemy enemy = enemyTrans.GetComponent<Enemy>();
+            enemy.enabled = true;
+        }
+    }
+
     public Transform GetEnemyField()
     {
         return enemies;

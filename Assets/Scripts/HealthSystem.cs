@@ -12,7 +12,7 @@ public class HealthSystem : MonoBehaviour
         if (Health <= 0)
         {
             isLive = false;
-            Destroy(transform.gameObject);
+            //Destroy(transform.gameObject);
         }
     }
 }
