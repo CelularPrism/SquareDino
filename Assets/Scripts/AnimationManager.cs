@@ -9,7 +9,6 @@ public class AnimationManager : MonoBehaviour
 
     private void Start()
     {
-        movement = transform.GetComponent<Movement>();
         animator = transform.GetComponent<Animator>();
     }
 

@@ -43,7 +43,7 @@ public class SceneController : MonoBehaviour
                 {
                     shooting.shooting = false;
                     uiManager.UpdateSlider();
-                    movement.SetPoint(wayPoints[indexPoint]);
+                    movement.SetPoint(wayPoints[indexPoint].position, wayPoints[indexPoint].speed);
                     indexPoint++;
                 }
                 else if (floorManager == null)

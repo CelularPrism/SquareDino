@@ -6,14 +6,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private LayerMask enemyMask;
     [SerializeField] private float speed = 10f;
+    [SerializeField] private int damage;
     private Vector3 posPoint;
-
-    private int damage;
-
-    private void Start()
-    {
-        damage = 2;
-    }
 
     void Update()
     {

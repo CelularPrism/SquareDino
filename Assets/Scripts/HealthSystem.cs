@@ -13,13 +13,12 @@ public class HealthSystem : MonoBehaviour
     public void Damage(int damage)
     {
         Health -= damage;
-        if (Health >= 0)
-        {
-            imageHealth.fillAmount = (float)Health / (float)maxHealth;
-        }
+        imageHealth.fillAmount = (float)Health / (float)maxHealth;
 
         if (Health <= 0)
         {
+            if (transform.GetComponent<Enemy>() != null)
+                transform.GetComponent<Enemy>().enabled = false;
             imageHealth.gameObject.SetActive(false);
             isLive = false;
         }

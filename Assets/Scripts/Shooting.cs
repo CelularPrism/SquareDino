@@ -7,16 +7,11 @@ public class Shooting : MonoBehaviour
     [SerializeField] private GameObject prefabBullet;
     [SerializeField] private Transform spawnPointBullet;
     [SerializeField] private Camera camera;
-    [SerializeField] private LayerMask maskEnemy;
     public float timeReload = 0.5f;
     public bool shooting = false;
 
-    private Vector3 enemyPos;
-    private Transform enemyField;
-
     private Touch[] touch;
     private float timeNextShoot;
-    private float minDistance;
 
     private void Start()
     {

@@ -6,9 +6,8 @@ using UnityEngine.AI;
 public class Movement : MonoBehaviour
 {
     public bool isMove = false;
-    public float speedRotation = 5f;
 
-    private WayPoint wayPoint;
+    private Vector3 positionWayPoint;
     private NavMeshAgent meshAgent;
 
     private void Start()
@@ -18,22 +17,23 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        if (wayPoint != null)
+        if (positionWayPoint != Vector3.zero)
         {
-            if (Vector3.Distance(transform.position, wayPoint.position) > 0.1f)
-            {                
+            if (Vector3.Distance(transform.position, positionWayPoint) > 0.1f)
+            {
                 isMove = true;
             } else
             {
                 isMove = false;
-                wayPoint = null;
+                positionWayPoint = Vector3.zero;
             }
         }
     }
 
-    public void SetPoint(WayPoint wayPoint)
+    public void SetPoint(Vector3 wayPoint, float speed)
     {
-        this.wayPoint = wayPoint;
-        meshAgent.destination = wayPoint.position;
+        positionWayPoint = wayPoint;
+        meshAgent.destination = wayPoint;
+        meshAgent.speed = speed;
     }
 }
