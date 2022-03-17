@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private LayerMask enemyMask;
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 10f;
     private Vector3 posPoint;
 
     private int damage;
@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
             healthSystem.Damage(damage);
             Destroy(transform.gameObject);
         }
-        else if (Vector3.Distance(transform.position, posPoint) <= 0.001f)
+        else if (transform.position == posPoint)
             Destroy(transform.gameObject);
     }
 

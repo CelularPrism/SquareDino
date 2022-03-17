@@ -6,7 +6,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Transform[] enemiesFields;
+    [SerializeField] private GameObject text;
     [SerializeField] private Slider sliderProgressLevel;
+
+    public void StartGame()
+    {
+        text.SetActive(false);
+    }
 
     public void UpdateSlider()
     {

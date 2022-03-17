@@ -5,6 +5,7 @@ using UnityEngine;
 public class FloorManager : MonoBehaviour
 {
     [SerializeField] private Transform enemies;
+    [SerializeField] private GameObject panelHealth;
 
     public bool haveEnemies;
 
@@ -18,6 +19,7 @@ public class FloorManager : MonoBehaviour
         {
             transform.gameObject.layer = LayerMask.NameToLayer("Default");
             haveEnemies = false;
+            panelHealth.SetActive(false);
         }
     }
 
@@ -28,6 +30,7 @@ public class FloorManager : MonoBehaviour
             Enemy enemy = enemyTrans.GetComponent<Enemy>();
             enemy.enabled = true;
         }
+        panelHealth.SetActive(true);
     }
 
     public Transform GetEnemyField()

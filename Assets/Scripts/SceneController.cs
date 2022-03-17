@@ -15,9 +15,12 @@ public class SceneController : MonoBehaviour
     private HealthSystem healthSystem;
     private Shooting shooting;
 
+    private bool startGame;
+
     private void Start()
     {
         indexPoint = 0;
+        startGame = false;
         movement = transform.GetComponent<Movement>();
         shooting = transform.GetComponent<Shooting>();
         healthSystem = transform.GetComponent<HealthSystem>();
@@ -25,26 +28,36 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
-        if (!movement.isMove && healthSystem.isLive)
-        {
-            floorManager = GetFloor();
-            if (floorManager == null && indexPoint < wayPoints.Length)
+        if (Input.touches.Length > 0)
+            if (Input.touches[0].phase == TouchPhase.Began)
             {
-                shooting.shooting = false;
-                uiManager.UpdateSlider();
-                movement.SetPoint(wayPoints[indexPoint]);
-                indexPoint++;
-            } else if (indexPoint < wayPoints.Length)
-            {
-                shooting.shooting = true;
-            } else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                startGame = true;
+                uiManager.StartGame();
             }
-        } else if (!healthSystem.isLive)
-        {
+
+        if (startGame)
+            if (!movement.isMove && healthSystem.isLive)
+            {
+                floorManager = GetFloor();
+                if (floorManager == null && indexPoint < wayPoints.Length)
+                {
+                    shooting.shooting = false;
+                    uiManager.UpdateSlider();
+                    movement.SetPoint(wayPoints[indexPoint]);
+                    indexPoint++;
+                }
+                else if (floorManager == null)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                } 
+                else 
+                { 
+                    shooting.shooting = true;
+                }
+            } else if (!healthSystem.isLive)
+            {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+            }
     }
 
     private FloorManager GetFloor()
